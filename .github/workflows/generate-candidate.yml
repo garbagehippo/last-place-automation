@@ -1,0 +1,41 @@
+name: Generate candidate
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 14 * * 2,5"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - id: candidate
+        run: npm run generate
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_TEXT_MODEL: ${{ vars.OPENAI_TEXT_MODEL || 'gpt-5-mini' }}
+          RETAIL_PRICE_CENTS: ${{ vars.RETAIL_PRICE_CENTS || '2499' }}
+      - name: Open approval pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DIR: ${{ steps.candidate.outputs.candidate_dir }}
+          SLUG: ${{ steps.candidate.outputs.slug }}
+          TITLE: ${{ steps.candidate.outputs.title }}
+        run: |
+          git config user.name "last-place-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git checkout -b "candidate/$SLUG"
+          git add "$DIR"
+          git commit -m "Candidate: $TITLE"
+          git push origin "candidate/$SLUG"
+          gh pr create --title "Approve product: $TITLE" --body-file "$DIR/README.md" --base main --head "candidate/$SLUG"

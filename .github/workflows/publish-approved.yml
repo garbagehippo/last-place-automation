@@ -1,0 +1,43 @@
+name: Publish approved candidate
+
+on:
+  pull_request:
+    types: [closed]
+
+permissions:
+  contents: write
+  pull-requests: read
+
+jobs:
+  publish:
+    if: github.event.pull_request.merged == true && startsWith(github.event.pull_request.head.ref, 'candidate/')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - id: locate
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          FILE=$(gh pr view "$PR_NUMBER" --json files --jq '.files[].path | select(test("^candidates/[^/]+/manifest.json$"))' | head -n 1)
+          test -n "$FILE"
+          echo "candidate_dir=$(dirname "$FILE")" >> "$GITHUB_OUTPUT"
+      - run: npm run publish -- "${{ steps.locate.outputs.candidate_dir }}"
+        env:
+          PRINTIFY_API_TOKEN: ${{ secrets.PRINTIFY_API_TOKEN }}
+          PRINTIFY_SHOP_ID: ${{ secrets.PRINTIFY_SHOP_ID }}
+          PRINTIFY_FLAG_TEMPLATE_PRODUCT_ID: ${{ secrets.PRINTIFY_FLAG_TEMPLATE_PRODUCT_ID }}
+      - name: Record published product
+        run: |
+          git config user.name "last-place-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add "${{ steps.locate.outputs.candidate_dir }}/manifest.json"
+          git commit -m "Record published product" || exit 0
+          git push
