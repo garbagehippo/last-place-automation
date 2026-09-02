@@ -36,8 +36,8 @@ function buildLandscapeSvg(concept: Concept): string {
   return `<svg xmlns="http://www.w3.org/2000/svg" width="5400" height="3600" viewBox="0 0 5400 3600">
   <rect width="5400" height="3600" fill="${p.bg}"/>
   <rect x="120" y="120" width="5160" height="3360" rx="65" fill="none" stroke="${p.ink}" stroke-width="32"/>
-  <rect x="1650" y="350" width="2100" height="230" rx="115" fill="${p.ink}"/>
-  <text x="2700" y="510" text-anchor="middle" fill="${p.reverse}" font-family="Arial,DejaVu Sans,sans-serif" font-size="105" font-weight="800" letter-spacing="15">${esc(concept.eyebrow.toUpperCase())}</text>
+  <rect x="1650" y="350" width="2100" height="230" rx="115" fill="${p.accent}"/>
+  <text x="2700" y="510" text-anchor="middle" fill="${p.bg}" font-family="Arial,DejaVu Sans,sans-serif" font-size="105" font-weight="800" letter-spacing="15">${esc(concept.eyebrow.toUpperCase())}</text>
   ${band}
   ${text}
   <line x1="700" y1="3025" x2="4700" y2="3025" stroke="${p.accent}" stroke-width="20"/>
@@ -49,10 +49,10 @@ function buildGardenSvg(concept: Concept, layout: "automatic" | "caution"): stri
   const caution = layout === "caution";
   const base = caution ? { bg: "#FFD21F", ink: "#0B0B0B", accent: "#0B0B0B", reverse: "#FFFFFF" } : palettes[concept.palette];
   const lines = concept.phrase_lines;
-  const startY = lines.length === 4 ? 1450 : lines.length === 3 ? 1600 : 1850;
-  const gap = lines.length === 4 ? 620 : lines.length === 3 ? 760 : 980;
+  const startY = lines.length === 4 ? 1370 : lines.length === 3 ? 1450 : 1700;
+  const gap = lines.length === 4 ? 590 : lines.length === 3 ? 690 : 900;
   const safeWidth = 2860;
-  const fontSizes = lines.map(line => Math.min(410, Math.floor(safeWidth / Math.max(1, line.length * 0.72))));
+  const fontSizes = lines.map(line => Math.min(480, Math.floor(safeWidth / Math.max(1, line.length * 0.68))));
   const lastFontSize = fontSizes[fontSizes.length - 1]!;
   const lastY = startY + (lines.length - 1) * gap;
   const bandY = lastY - lastFontSize + 80;
@@ -71,12 +71,12 @@ function buildGardenSvg(concept: Concept, layout: "automatic" | "caution"): stri
   <rect width="3600" height="5400" fill="${base.bg}"/>
   <rect x="110" y="110" width="3380" height="5180" rx="55" fill="none" stroke="${base.ink}" stroke-width="28"/>
   ${stripes}
-  <rect x="620" y="650" width="2360" height="210" rx="105" fill="${base.ink}"/>
-  <text x="1800" y="795" text-anchor="middle" fill="${caution ? "#FFD21F" : base.reverse}" font-family="Arial,DejaVu Sans,sans-serif" font-size="98" font-weight="900" letter-spacing="13">${esc(concept.eyebrow.toUpperCase())}</text>
+  <rect x="620" y="610" width="2360" height="230" rx="115" fill="${caution ? base.ink : base.accent}"/>
+  <text x="1800" y="770" text-anchor="middle" fill="${caution ? "#FFD21F" : base.bg}" font-family="Arial,DejaVu Sans,sans-serif" font-size="104" font-weight="900" letter-spacing="13">${esc(concept.eyebrow.toUpperCase())}</text>
   <rect x="260" y="${bandY}" width="3080" height="${lastFontSize + 180}" rx="45" fill="${base.accent}"/>
   ${text}
-  <line x1="520" y1="4300" x2="3080" y2="4300" stroke="${base.ink}" stroke-width="24"/>
-  <text x="1800" y="4570" text-anchor="middle" fill="${base.ink}" font-family="Arial,DejaVu Sans,sans-serif" font-size="120" font-weight="900" letter-spacing="8">${esc(concept.footer.toUpperCase())}</text>
+  <line x1="430" y1="4070" x2="3170" y2="4070" stroke="${caution ? base.ink : base.accent}" stroke-width="24"/>
+  <text x="1800" y="4360" text-anchor="middle" fill="${base.ink}" font-family="Arial,DejaVu Sans,sans-serif" font-size="145" font-weight="900" letter-spacing="7">${esc(concept.footer.toUpperCase())}</text>
   </svg>`;
 }
 

@@ -53,3 +53,20 @@ test("renders shirts on a transparent portrait canvas", () => {
   assert.match(svg, /id="shirtHazard"/);
   assert.doesNotMatch(svg, /<rect width="4500" height="5400"/);
 });
+
+test("keeps the blue garden-flag eyebrow readable", () => {
+  const concept = {
+    phrase_lines: ["I SUCK AT", "FANTASY", "FOOTBALL"],
+    eyebrow: "LAST PLACE CERTIFIED",
+    footer: "ASK ANYONE IN MY LEAGUE",
+    style: "scoreboard" as const,
+    palette: "blue" as const,
+    title: "Fantasy Football Loser Garden Flag",
+    description: "A sufficiently long product description for validating readable blue garden-flag artwork.",
+    tags: ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen"],
+    rationale: "A direct and readable blue punishment flag design."
+  };
+  const svg = buildSvg(concept, "garden-flag", "automatic");
+  assert.match(svg, /fill="#F26A21"\/?>/);
+  assert.match(svg, /fill="#123B7A"[^>]*>LAST PLACE CERTIFIED/);
+});
