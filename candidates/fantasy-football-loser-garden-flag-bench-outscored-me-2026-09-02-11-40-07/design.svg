@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3600" height="5400" viewBox="0 0 3600 5400">
+  <rect width="3600" height="5400" fill="#FFF5EA"/>
+  <rect x="110" y="110" width="3380" height="5180" rx="55" fill="none" stroke="#171310" stroke-width="28"/>
+  
+  <rect x="220" y="290" width="3160" height="75" rx="38" fill="#E8652A"/>
+  <rect x="220" y="5035" width="3160" height="75" rx="38" fill="#E8652A"/>
+  <rect x="620" y="650" width="2360" height="210" rx="105" fill="#171310"/>
+  <text x="1800" y="795" text-anchor="middle" fill="#FFFFFF" font-family="Arial,DejaVu Sans,sans-serif" font-size="98" font-weight="900" letter-spacing="13">LINEUP MANAGEMENT AWARD</text>
+  <rect x="260" y="2579" width="3080" height="511" rx="45" fill="#E8652A"/>
+  <text x="1800" y="1850" text-anchor="middle" fill="#171310" font-family="Arial Black,DejaVu Sans,sans-serif" font-size="410" font-weight="900" letter-spacing="3">MY BENCH</text>
+<text x="1800" y="2830" text-anchor="middle" fill="#FFFFFF" font-family="Arial Black,DejaVu Sans,sans-serif" font-size="331" font-weight="900" letter-spacing="3">OUTSCORED ME</text>
+  <line x1="520" y1="4300" x2="3080" y2="4300" stroke="#171310" stroke-width="24"/>
+  <text x="1800" y="4570" text-anchor="middle" fill="#171310" font-family="Arial,DejaVu Sans,sans-serif" font-size="120" font-weight="900" letter-spacing="8">EVERY SINGLE POINT COUNTS</text>
+  </svg>
