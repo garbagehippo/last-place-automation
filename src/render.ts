@@ -17,13 +17,20 @@ export function buildSvg(concept: Concept): string {
   const lines = concept.phrase_lines;
   const startY = lines.length === 4 ? 1260 : lines.length === 3 ? 1400 : 1580;
   const gap = lines.length === 4 ? 520 : lines.length === 3 ? 610 : 740;
-  const fontSize = lines.reduce((max, line) => Math.max(max, line.length), 0) > 20 ? 410 : 500;
-  const text = lines.map((line, i) =>
-    `<text x="2700" y="${startY + i * gap}" text-anchor="middle" fill="${i === lines.length - 1 ? p.reverse : p.ink}" font-family="Arial Black,DejaVu Sans,sans-serif" font-size="${fontSize}" font-weight="900" letter-spacing="5">${esc(line.toUpperCase())}</text>`
-  ).join("\n");
+  const safeTextWidth = 4200;
+  const fontSizes = lines.map(line => Math.min(500, Math.floor(safeTextWidth / Math.max(1, line.length * 0.72))));
+  const text = lines.map((line, i) => {
+    const fontSize = fontSizes[i]!;
+    const estimatedWidth = line.length * fontSize * 0.72;
+    const fit = estimatedWidth > safeTextWidth
+      ? ` textLength="${safeTextWidth}" lengthAdjust="spacingAndGlyphs"`
+      : "";
+    return `<text x="2700" y="${startY + i * gap}" text-anchor="middle" fill="${i === lines.length - 1 ? p.reverse : p.ink}" font-family="Arial Black,DejaVu Sans,sans-serif" font-size="${fontSize}" font-weight="900" letter-spacing="5"${fit}>${esc(line.toUpperCase())}</text>`;
+  }).join("\n");
 
-  const lastBandY = startY + (lines.length - 1) * gap - fontSize + 60;
-  const band = `<rect x="360" y="${lastBandY}" width="4680" height="${fontSize + 135}" rx="55" fill="${p.accent}"/>`;
+  const lastFontSize = fontSizes[fontSizes.length - 1]!;
+  const lastBandY = startY + (lines.length - 1) * gap - lastFontSize + 60;
+  const band = `<rect x="360" y="${lastBandY}" width="4680" height="${lastFontSize + 135}" rx="55" fill="${p.accent}"/>`;
 
   return `<svg xmlns="http://www.w3.org/2000/svg" width="5400" height="3600" viewBox="0 0 5400 3600">
   <rect width="5400" height="3600" fill="${p.bg}"/>
