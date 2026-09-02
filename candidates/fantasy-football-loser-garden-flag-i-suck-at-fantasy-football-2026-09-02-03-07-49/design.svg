@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3600" height="5400" viewBox="0 0 3600 5400">
+  <rect width="3600" height="5400" fill="#FFD21F"/>
+  <rect x="110" y="110" width="3380" height="5180" rx="55" fill="none" stroke="#0B0B0B" stroke-width="28"/>
+  
+  <defs><pattern id="hazard" width="260" height="180" patternUnits="userSpaceOnUse" patternTransform="skewX(-28)"><rect width="130" height="180" fill="#0B0B0B"/><rect x="130" width="130" height="180" fill="#FFD21F"/></pattern></defs>
+  <rect x="180" y="260" width="3240" height="210" fill="url(#hazard)"/>
+  <rect x="180" y="4930" width="3240" height="210" fill="url(#hazard)"/>
+  <rect x="620" y="650" width="2360" height="210" rx="105" fill="#0B0B0B"/>
+  <text x="1800" y="795" text-anchor="middle" fill="#FFD21F" font-family="Arial,DejaVu Sans,sans-serif" font-size="98" font-weight="900" letter-spacing="13">LAST PLACE CERTIFIED</text>
+  <rect x="260" y="2790" width="3080" height="590" rx="45" fill="#0B0B0B"/>
+  <text x="1800" y="1600" text-anchor="middle" fill="#0B0B0B" font-family="Arial Black,DejaVu Sans,sans-serif" font-size="410" font-weight="900" letter-spacing="3">I SUCK AT</text>
+<text x="1800" y="2360" text-anchor="middle" fill="#0B0B0B" font-family="Arial Black,DejaVu Sans,sans-serif" font-size="410" font-weight="900" letter-spacing="3">FANTASY</text>
+<text x="1800" y="3120" text-anchor="middle" fill="#FFD21F" font-family="Arial Black,DejaVu Sans,sans-serif" font-size="410" font-weight="900" letter-spacing="3">FOOTBALL</text>
+  <line x1="520" y1="4300" x2="3080" y2="4300" stroke="#0B0B0B" stroke-width="24"/>
+  <text x="1800" y="4570" text-anchor="middle" fill="#0B0B0B" font-family="Arial,DejaVu Sans,sans-serif" font-size="120" font-weight="900" letter-spacing="8">ASK ANYONE IN MY LEAGUE</text>
+  </svg>
