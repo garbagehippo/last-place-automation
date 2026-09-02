@@ -39,13 +39,16 @@ async function usedConceptIds(themeKey: string, productType: ProductType): Promi
 }
 
 async function selectConcept(theme: Theme, productType: ProductType, requestedId?: string) {
+  const eligible = theme.concepts.filter(concept =>
+    (concept.product_types || theme.default_product_types)?.includes(productType) ?? true
+  );
   if (requestedId) {
-    const requested = theme.concepts.find(concept => concept.id === requestedId);
+    const requested = eligible.find(concept => concept.id === requestedId);
     if (!requested) throw new Error(`Concept ${requestedId} does not exist in theme ${theme.key}`);
     return requested;
   }
   const used = await usedConceptIds(theme.key, productType);
-  const available = theme.concepts.filter(concept => !used.has(concept.id));
+  const available = eligible.filter(concept => !used.has(concept.id));
   if (!available.length) throw new Error(`All curated concepts for ${theme.key} have already been used`);
   return available[Math.floor(Math.random() * available.length)]!;
 }
@@ -77,7 +80,7 @@ Write a natural Etsy title under 15 words that clearly includes the product type
   });
 
   const merchandising = JSON.parse(response.output_text);
-  const concept: Concept = ConceptSchema.parse({ phrase_lines: seed.phrase_lines, eyebrow: seed.eyebrow, footer: seed.footer, ...merchandising });
+  const concept: Concept = ConceptSchema.parse({ phrase_lines: seed.phrase_lines, eyebrow: seed.eyebrow, footer: seed.footer, ...merchandising, ...(seed.palette ? { palette: seed.palette } : {}) });
   if (JSON.stringify(concept).includes("�")) throw new Error("Generated listing contains malformed characters");
   assertLowRisk(concept);
 

@@ -12,13 +12,16 @@ export const ThemeSchema = z.object({
   concept_directions: z.array(z.string().min(5)).min(1),
   avoid: z.array(z.string().min(2)).default([]),
   search_terms: z.array(z.string().min(2).max(40)).min(2),
+  default_product_types: z.array(z.enum(["standard-flag", "garden-flag", "shirt"])).optional(),
   concepts: z.array(z.object({
     id: z.string().regex(/^[a-z0-9-]+$/),
     phrase_lines: z.array(z.string().min(1).max(28)).min(2).max(4),
     eyebrow: z.string().max(30),
     footer: z.string().max(45),
     intent: z.string().min(10).max(240),
-    layout: z.enum(["automatic", "caution"]).default("automatic")
+    layout: z.enum(["automatic", "caution"]).default("automatic"),
+    product_types: z.array(z.enum(["standard-flag", "garden-flag", "shirt"])).optional(),
+    palette: z.enum(["blue", "green", "orange", "monochrome"]).optional()
   })).min(1)
 });
 

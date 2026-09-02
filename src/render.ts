@@ -3,8 +3,8 @@ import type { Concept } from "./types.js";
 import type { ProductType } from "./product.js";
 
 const palettes = {
-  blue: { bg: "#F4F7FF", ink: "#111318", accent: "#2F6BFF", reverse: "#FFFFFF" },
-  green: { bg: "#F2F5EC", ink: "#15221A", accent: "#39734F", reverse: "#FFFFFF" },
+  blue: { bg: "#123B7A", ink: "#FFFFFF", accent: "#F26A21", reverse: "#FFFFFF" },
+  green: { bg: "#173B2A", ink: "#F7F0D8", accent: "#D6A84B", reverse: "#173B2A" },
   orange: { bg: "#FFF5EA", ink: "#171310", accent: "#E8652A", reverse: "#FFFFFF" },
   monochrome: { bg: "#F5F5F2", ink: "#101010", accent: "#555555", reverse: "#FFFFFF" }
 };
