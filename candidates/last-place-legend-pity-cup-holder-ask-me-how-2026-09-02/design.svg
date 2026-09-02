@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="5400" height="3600" viewBox="0 0 5400 3600">
+  <rect width="5400" height="3600" fill="#FFF5EA"/>
+  <rect x="120" y="120" width="5160" height="3360" rx="65" fill="none" stroke="#171310" stroke-width="32"/>
+  <rect x="1650" y="350" width="2100" height="230" rx="115" fill="#171310"/>
+  <text x="2700" y="510" text-anchor="middle" fill="#FFFFFF" font-family="Arial,DejaVu Sans,sans-serif" font-size="105" font-weight="800" letter-spacing="15">LAST PLACE OUTFITTERS</text>
+  <rect x="360" y="2180" width="4680" height="635" rx="55" fill="#E8652A"/>
+  <text x="2700" y="1400" text-anchor="middle" fill="#171310" font-family="Arial Black,DejaVu Sans,sans-serif" font-size="500" font-weight="900" letter-spacing="5">LAST PLACE LEGEND</text>
+<text x="2700" y="2010" text-anchor="middle" fill="#171310" font-family="Arial Black,DejaVu Sans,sans-serif" font-size="500" font-weight="900" letter-spacing="5">PITY CUP HOLDER</text>
+<text x="2700" y="2620" text-anchor="middle" fill="#FFFFFF" font-family="Arial Black,DejaVu Sans,sans-serif" font-size="500" font-weight="900" letter-spacing="5">ASK ME HOW</text>
+  <line x1="700" y1="3025" x2="4700" y2="3025" stroke="#E8652A" stroke-width="20"/>
+  <text x="2700" y="3260" text-anchor="middle" fill="#171310" font-family="Arial,DejaVu Sans,sans-serif" font-size="135" font-weight="800" letter-spacing="12">FOR THE BRAVE LOSER</text>
+  </svg>
