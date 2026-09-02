@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3600" height="5400" viewBox="0 0 3600 5400">
+  <rect width="3600" height="5400" fill="#173B2A"/>
+  <rect x="110" y="110" width="3380" height="5180" rx="55" fill="none" stroke="#F7F0D8" stroke-width="28"/>
+  
+  <rect x="220" y="290" width="3160" height="75" rx="38" fill="#D6A84B"/>
+  <rect x="220" y="5035" width="3160" height="75" rx="38" fill="#D6A84B"/>
+  <rect x="620" y="610" width="2360" height="230" rx="115" fill="#D6A84B"/>
+  <text x="1800" y="770" text-anchor="middle" fill="#173B2A" font-family="Arial,DejaVu Sans,sans-serif" font-size="104" font-weight="900" letter-spacing="13">OFFICIAL LEAGUE RESULT</text>
+  <rect x="260" y="2200" width="3080" height="660" rx="45" fill="#D6A84B"/>
+  <text x="1800" y="1700" text-anchor="middle" fill="#F7F0D8" font-family="Arial Black,DejaVu Sans,sans-serif" font-size="262" font-weight="900" letter-spacing="3">FANTASY FOOTBALL</text>
+<text x="1800" y="2600" text-anchor="middle" fill="#173B2A" font-family="Arial Black,DejaVu Sans,sans-serif" font-size="480" font-weight="900" letter-spacing="3">LOSER</text>
+  <line x1="430" y1="4070" x2="3170" y2="4070" stroke="#D6A84B" stroke-width="24"/>
+  <text x="1800" y="4360" text-anchor="middle" fill="#F7F0D8" font-family="Arial,DejaVu Sans,sans-serif" font-size="145" font-weight="900" letter-spacing="7">LAST PLACE AND PROUD</text>
+  </svg>
