@@ -16,6 +16,20 @@ async function request(endpoint: string, init: RequestInit = {}) {
   return body ? JSON.parse(body) : {};
 }
 
+export function buildPrintAreas(template: any, enabledVariants: Array<{ id: number }>, uploadId: string) {
+  return template.print_areas.map((area: any) => ({
+    variant_ids: area.variant_ids.filter((id: number) => enabledVariants.some(v => v.id === id)),
+    placeholders: area.placeholders
+      .filter((holder: any) => Array.isArray(holder.images) && holder.images.length > 0)
+      .map((holder: any) => ({
+        position: holder.position,
+        images: holder.images.map((old: any) => ({
+          id: uploadId, x: old.x, y: old.y, scale: old.scale, angle: old.angle
+        }))
+      }))
+  })).filter((area: any) => area.variant_ids.length > 0 && area.placeholders.length > 0);
+}
+
 export async function publishCandidate(candidateDir: string, manifest: Manifest): Promise<string> {
   const shopId = process.env.PRINTIFY_SHOP_ID;
   const templateId = process.env.PRINTIFY_FLAG_TEMPLATE_PRODUCT_ID;
@@ -30,15 +44,8 @@ export async function publishCandidate(candidateDir: string, manifest: Manifest)
   const enabledVariants = template.variants.filter((v: any) => v.is_enabled).map((v: any) => ({
     id: v.id, price: manifest.retail_price_cents, is_enabled: true
   }));
-  const printAreas = template.print_areas.map((area: any) => ({
-    variant_ids: area.variant_ids.filter((id: number) => enabledVariants.some((v: any) => v.id === id)),
-    placeholders: area.placeholders.map((holder: any) => ({
-      position: holder.position,
-      images: holder.images.map((old: any) => ({
-        id: upload.id, x: old.x, y: old.y, scale: old.scale, angle: old.angle
-      }))
-    }))
-  })).filter((area: any) => area.variant_ids.length);
+  const printAreas = buildPrintAreas(template, enabledVariants, upload.id);
+  if (!printAreas.length) throw new Error("Template has no populated print areas to clone");
 
   const product = await request(`/shops/${shopId}/products.json`, {
     method: "POST",
