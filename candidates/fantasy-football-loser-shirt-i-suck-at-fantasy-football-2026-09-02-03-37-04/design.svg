@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="4500" height="5400" viewBox="0 0 4500 5400">
+  <defs><pattern id="shirtHazard" width="250" height="170" patternUnits="userSpaceOnUse" patternTransform="skewX(-28)"><rect width="125" height="170" fill="#111111"/><rect x="125" width="125" height="170" fill="#FFD21F"/></pattern></defs><rect x="500" y="690" width="3500" height="170" fill="url(#shirtHazard)"/><rect x="500" y="4500" width="3500" height="170" fill="url(#shirtHazard)"/>
+  <rect x="950" y="1020" width="2600" height="230" rx="115" fill="#111111"/>
+  <text x="2250" y="1180" text-anchor="middle" fill="#FFD21F" font-family="Arial,DejaVu Sans,sans-serif" font-size="110" font-weight="900" letter-spacing="14">LAST PLACE CERTIFIED</text>
+  <rect x="300" y="2940" width="3900" height="750" rx="60" fill="#FFD21F"/>
+  <text x="2250" y="1900" text-anchor="middle" fill="#111111" font-family="Arial Black,DejaVu Sans,sans-serif" font-size="555" font-weight="900" letter-spacing="4">I SUCK AT</text>
+<text x="2250" y="2660" text-anchor="middle" fill="#111111" font-family="Arial Black,DejaVu Sans,sans-serif" font-size="560" font-weight="900" letter-spacing="4">FANTASY</text>
+<text x="2250" y="3420" text-anchor="middle" fill="#111111" font-family="Arial Black,DejaVu Sans,sans-serif" font-size="560" font-weight="900" letter-spacing="4">FOOTBALL</text>
+  <line x1="700" y1="4200" x2="3800" y2="4200" stroke="#FFD21F" stroke-width="24"/>
+  <text x="2250" y="4420" text-anchor="middle" fill="#111111" font-family="Arial,DejaVu Sans,sans-serif" font-size="130" font-weight="900" letter-spacing="9">ASK ANYONE IN MY LEAGUE</text>
+  </svg>
