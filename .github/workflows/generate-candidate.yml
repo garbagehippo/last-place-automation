@@ -7,6 +7,18 @@ on:
         description: Theme key from config/themes (without .json)
         required: false
         default: fantasy-football-loser
+      product_type:
+        description: Product format
+        required: true
+        type: choice
+        default: standard-flag
+        options:
+          - standard-flag
+          - garden-flag
+      concept_id:
+        description: Optional curated concept ID; leave blank for the next unused concept
+        required: false
+        default: ""
   schedule:
     - cron: "17 14 * * 2,5"
 
@@ -29,8 +41,10 @@ jobs:
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_TEXT_MODEL: ${{ vars.OPENAI_TEXT_MODEL || 'gpt-5-mini' }}
-          RETAIL_PRICE_CENTS: ${{ vars.RETAIL_PRICE_CENTS || '2499' }}
+          RETAIL_PRICE_CENTS: ${{ vars.RETAIL_PRICE_CENTS }}
           THEME: ${{ inputs.theme || vars.ACTIVE_THEME || 'fantasy-football-loser' }}
+          PRODUCT_TYPE: ${{ inputs.product_type || 'standard-flag' }}
+          CONCEPT_ID: ${{ inputs.concept_id || '' }}
       - name: Open approval pull request
         env:
           GH_TOKEN: ${{ github.token }}

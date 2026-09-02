@@ -1,6 +1,7 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import type { Manifest } from "./types.js";
+import { productProfiles } from "./product.js";
 
 const base = "https://api.printify.com/v1";
 
@@ -32,8 +33,9 @@ export function buildPrintAreas(template: any, enabledVariants: Array<{ id: numb
 
 export async function publishCandidate(candidateDir: string, manifest: Manifest): Promise<string> {
   const shopId = process.env.PRINTIFY_SHOP_ID;
-  const templateId = process.env.PRINTIFY_FLAG_TEMPLATE_PRODUCT_ID;
-  if (!shopId || !templateId) throw new Error("PRINTIFY_SHOP_ID and PRINTIFY_FLAG_TEMPLATE_PRODUCT_ID are required");
+  const profile = productProfiles[manifest.product_type];
+  const templateId = process.env[profile.templateSecret];
+  if (!shopId || !templateId) throw new Error(`PRINTIFY_SHOP_ID and ${profile.templateSecret} are required`);
 
   const image = await readFile(path.join(candidateDir, manifest.design_file));
   const upload = await request("/uploads/images.json", {

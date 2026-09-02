@@ -14,7 +14,8 @@
       "phrase_lines": ["PRINTED LINE ONE", "PRINTED LINE TWO"],
       "eyebrow": "SMALL TOP LABEL",
       "footer": "SMALL SUPPORTING LINE",
-      "intent": "Why a real buyer would understand and purchase this exact phrase."
+      "intent": "Why a real buyer would understand and purchase this exact phrase.",
+      "layout": "automatic"
     }
   ]
 }

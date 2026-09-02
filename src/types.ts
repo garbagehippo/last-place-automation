@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { ProductTypeSchema } from "./product.js";
 
 export const ConceptSchema = z.object({
   phrase_lines: z.array(z.string().min(1).max(28)).min(2).max(4),
@@ -16,7 +17,7 @@ export const ManifestSchema = ConceptSchema.extend({
   slug: z.string(),
   theme: z.string(),
   concept_id: z.string(),
-  product_type: z.literal("flag"),
+  product_type: ProductTypeSchema,
   retail_price_cents: z.number().int().positive(),
   design_file: z.string(),
   svg_file: z.string(),

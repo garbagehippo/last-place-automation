@@ -17,7 +17,8 @@ export const ThemeSchema = z.object({
     phrase_lines: z.array(z.string().min(1).max(28)).min(2).max(4),
     eyebrow: z.string().max(30),
     footer: z.string().max(45),
-    intent: z.string().min(10).max(240)
+    intent: z.string().min(10).max(240),
+    layout: z.enum(["automatic", "caution"]).default("automatic")
   })).min(1)
 });
 

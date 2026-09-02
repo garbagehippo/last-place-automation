@@ -14,6 +14,7 @@
   "avoid": ["official league terminology", "team names", "player names", "television references", "copied marketplace slogans"],
   "search_terms": ["fantasy football loser", "last place punishment", "funny loser flag", "league gag gift"],
   "concepts": [
+    { "id": "i-suck-at-fantasy-football", "phrase_lines": ["I SUCK AT", "FANTASY", "FOOTBALL"], "eyebrow": "LAST PLACE CERTIFIED", "footer": "ASK ANYONE IN MY LEAGUE", "intent": "The store's direct flagship confession, adapted to additional product formats without changing the joke.", "layout": "caution" },
     { "id": "drafted-this-disaster", "phrase_lines": ["I DRAFTED", "THIS DISASTER"], "eyebrow": "LAST PLACE CERTIFIED", "footer": "ASK ANYONE IN MY LEAGUE", "intent": "A direct confession blaming the manager for building a terrible roster." },
     { "id": "lineup-cry-for-help", "phrase_lines": ["MY LINEUP IS", "A CRY FOR HELP"], "eyebrow": "WEEKLY LINEUP REPORT", "footer": "PLEASE SEND WAIVER HELP", "intent": "Mocks a roster so bad that the starting lineup looks like a distress signal." },
     { "id": "another-bad-draft", "phrase_lines": ["ANOTHER YEAR", "ANOTHER BAD DRAFT"], "eyebrow": "DRAFT DAY TRADITION", "footer": "CONSISTENTLY FINISHING LAST", "intent": "An annual punishment for the manager who repeatedly ruins the season on draft day." },

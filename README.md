@@ -22,6 +22,7 @@ Create these under **Settings → Secrets and variables → Actions**.
 - `PRINTIFY_API_TOKEN`
 - `PRINTIFY_SHOP_ID`
 - `PRINTIFY_FLAG_TEMPLATE_PRODUCT_ID`
+- `PRINTIFY_GARDEN_FLAG_TEMPLATE_PRODUCT_ID`
 
 ### Optional variables
 
@@ -48,7 +49,7 @@ Themes live in `config/themes`. The automation logic, Printify connection, appro
 3. Commit the file.
 4. Enter `hunting-humor` when manually running **Generate candidate**, or set the repository variable `ACTIVE_THEME` to use it for scheduled runs.
 
-Theme switching currently reuses the configured flag product. Product formats are intentionally separate: adding shirts later requires one shirt template and renderer configuration, but every theme can then use it.
+The manual workflow independently selects a theme and product format. Standard flags and 12×18-inch garden flags both default to $24.99. Set `RETAIL_PRICE_CENTS` only when intentionally overriding the selected product's default.
 
 ## Local development
 
