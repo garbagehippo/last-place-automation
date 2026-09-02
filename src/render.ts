@@ -62,8 +62,10 @@ function buildGardenSvg(concept: Concept, layout: "automatic" | "caution"): stri
   const featuredLine = lines[lines.length - 1]!;
   const mainText = displayLines.map((line, index) => {
     const y = 1570 + index * 610;
-    return `<text x="1800" y="${y}" text-anchor="middle" fill="${colors.primary}" font-family="Arial Black,DejaVu Sans,sans-serif" font-size="500" font-weight="900" letter-spacing="10" textLength="${line.length > 9 ? 3060 : 2780}" lengthAdjust="spacingAndGlyphs">${esc(line)}</text>`;
+    const fontSize = Math.min(500, Math.floor(2800 / Math.max(1, line.length * 0.68)));
+    return `<text x="1800" y="${y}" text-anchor="middle" fill="${colors.primary}" font-family="Arial Black,DejaVu Sans,sans-serif" font-size="${fontSize}" font-weight="900" letter-spacing="8">${esc(line)}</text>`;
   }).join("\n");
+  const featuredFontSize = Math.min(760, Math.floor(2550 / Math.max(1, featuredLine.length * 0.68)));
   const footer = concept.footer.toUpperCase();
   const footerLines = footer === "LAST PLACE AND PROUD" ? ["LAST PLACE", "AND PROUD"]
     : footer === "ASK ANYONE IN MY LEAGUE" ? ["ASK ANYONE", "IN MY LEAGUE"]
@@ -83,7 +85,7 @@ function buildGardenSvg(concept: Concept, layout: "automatic" | "caution"): stri
   ${mainText}
   <path d="M280 2470 H3320 L3160 3390 H440 Z" fill="${colors.accent}"/>
   <path d="M410 2595 H3190 L3075 3265 H525 Z" fill="${colors.bg}"/>
-  <text x="1800" y="2930" text-anchor="middle" dominant-baseline="central" fill="${colors.primary}" font-family="Arial Black,DejaVu Sans,sans-serif" font-size="760" font-weight="900" letter-spacing="16" textLength="2320" lengthAdjust="spacingAndGlyphs">${esc(featuredLine)}</text>
+  <text x="1800" y="2930" text-anchor="middle" dominant-baseline="central" fill="${colors.primary}" font-family="Arial Black,DejaVu Sans,sans-serif" font-size="${featuredFontSize}" font-weight="900" letter-spacing="12">${esc(featuredLine)}</text>
   ${footerText}
   <g fill="${colors.accent}"><path d="M815 4470 l45 92 102 15-74 72 18 102-91-48-91 48 18-102-74-72 102-15z"/><path d="M1800 4470 l45 92 102 15-74 72 18 102-91-48-91 48 18-102-74-72 102-15z"/><path d="M2785 4470 l45 92 102 15-74 72 18 102-91-48-91 48 18-102-74-72 102-15z"/></g>
   <rect x="500" y="4910" width="2600" height="105" rx="52" fill="${colors.accent}"/>
