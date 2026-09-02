@@ -9,7 +9,7 @@ async function request(endpoint: string, init: RequestInit = {}) {
   if (!token) throw new Error("PRINTIFY_API_TOKEN is required");
   const response = await fetch(`${base}${endpoint}`, {
     ...init,
-    headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json", ...(init.headers || {}) }
+    headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json", "User-Agent": "LastPlaceAutomation/1.0", ...(init.headers || {}) }
   });
   const body = await response.text();
   if (!response.ok) throw new Error(`Printify ${response.status}: ${body}`);

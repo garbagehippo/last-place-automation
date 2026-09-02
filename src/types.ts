@@ -14,6 +14,7 @@ export const ConceptSchema = z.object({
 
 export const ManifestSchema = ConceptSchema.extend({
   slug: z.string(),
+  theme: z.string(),
   product_type: z.literal("flag"),
   retail_price_cents: z.number().int().positive(),
   design_file: z.string(),

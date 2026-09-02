@@ -1,0 +1,15 @@
+{
+  "key": "fantasy-football-loser",
+  "name": "Fantasy Football Last-Place Punishments",
+  "audience": "Adults in fantasy-football leagues buying an embarrassing but good-natured punishment for the last-place manager.",
+  "buyer_motivation": "Make the league loser display their failure at a draft party, watch party, home, office, or end-of-season event.",
+  "tone": ["funny", "competitive", "bold", "good-natured humiliation"],
+  "occasions": ["draft day", "end of season", "toilet bowl", "league party", "gag gift"],
+  "concept_directions": [
+    "self-aware confession from the loser",
+    "mock official last-place award",
+    "terrible lineup or waiver decisions",
+    "league-wide proof of failure"
+  ],
+  "avoid": ["official league terminology", "team names", "player names", "television references", "copied marketplace slogans"]
+}

@@ -4,7 +4,7 @@ async function get(endpoint: string) {
   const token = process.env.PRINTIFY_API_TOKEN;
   if (!token) throw new Error("PRINTIFY_API_TOKEN is required");
   const response = await fetch(`${base}${endpoint}`, {
-    headers: { Authorization: `Bearer ${token}` }
+    headers: { Authorization: `Bearer ${token}`, "User-Agent": "LastPlaceAutomation/1.0" }
   });
   if (!response.ok) throw new Error(`Printify ${response.status}: ${await response.text()}`);
   return response.json();

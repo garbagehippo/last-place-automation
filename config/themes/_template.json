@@ -1,0 +1,10 @@
+{
+  "key": "replace-with-theme-key",
+  "name": "Human-readable theme name",
+  "audience": "Who buys this and who receives or uses it.",
+  "buyer_motivation": "The problem, joke, identity, or occasion that makes someone purchase it.",
+  "tone": ["tone one", "tone two"],
+  "occasions": ["occasion one", "occasion two"],
+  "concept_directions": ["original creative territory one", "original creative territory two"],
+  "avoid": ["brands", "protected phrases", "unwanted subject matter"]
+}
