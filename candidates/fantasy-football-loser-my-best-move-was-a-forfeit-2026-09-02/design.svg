@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="5400" height="3600" viewBox="0 0 5400 3600">
+  <rect width="5400" height="3600" fill="#F5F5F2"/>
+  <rect x="120" y="120" width="5160" height="3360" rx="65" fill="none" stroke="#101010" stroke-width="32"/>
+  <rect x="1650" y="350" width="2100" height="230" rx="115" fill="#101010"/>
+  <text x="2700" y="510" text-anchor="middle" fill="#FFFFFF" font-family="Arial,DejaVu Sans,sans-serif" font-size="105" font-weight="800" letter-spacing="15">STRATEGIC WITHDRAWAL</text>
+  <rect x="360" y="1880" width="4680" height="635" rx="55" fill="#555555"/>
+  <text x="2700" y="1580" text-anchor="middle" fill="#101010" font-family="Arial Black,DejaVu Sans,sans-serif" font-size="500" font-weight="900" letter-spacing="5">MY BEST MOVE</text>
+<text x="2700" y="2320" text-anchor="middle" fill="#FFFFFF" font-family="Arial Black,DejaVu Sans,sans-serif" font-size="500" font-weight="900" letter-spacing="5">WAS A FORFEIT</text>
+  <line x1="700" y1="3025" x2="4700" y2="3025" stroke="#555555" stroke-width="20"/>
+  <text x="2700" y="3260" text-anchor="middle" fill="#101010" font-family="Arial,DejaVu Sans,sans-serif" font-size="135" font-weight="800" letter-spacing="12">END-OF-SEASON PROOF</text>
+  </svg>
