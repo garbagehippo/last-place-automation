@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const ProductTypeSchema = z.enum(["standard-flag", "garden-flag"]);
+export const ProductTypeSchema = z.enum(["standard-flag", "garden-flag", "shirt"]);
 export type ProductType = z.infer<typeof ProductTypeSchema>;
 
 export const productProfiles = {
@@ -19,6 +19,14 @@ export const productProfiles = {
     templateSecret: "PRINTIFY_GARDEN_FLAG_TEMPLATE_PRODUCT_ID",
     defaultPriceCents: 2499,
     facts: "12 x 18 inches; the same design is printed on both sides; weather-resistant polyester; top pole sleeve; printed to order; garden-flag stand is not included"
+  },
+  "shirt": {
+    label: "unisex graphic T-shirt",
+    width: 4500,
+    height: 5400,
+    templateSecret: "PRINTIFY_SHIRT_TEMPLATE_PRODUCT_ID",
+    defaultPriceCents: 2499,
+    facts: "unisex retail fit; front print; fiber content varies by color; printed to order; consult the listing size chart before ordering"
   }
 } as const;
 

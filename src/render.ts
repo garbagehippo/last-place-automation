@@ -80,8 +80,40 @@ function buildGardenSvg(concept: Concept, layout: "automatic" | "caution"): stri
   </svg>`;
 }
 
+function buildShirtSvg(concept: Concept, layout: "automatic" | "caution"): string {
+  const caution = layout === "caution";
+  const p = caution
+    ? { ink: "#111111", accent: "#FFD21F", reverse: "#FFFFFF" }
+    : palettes[concept.palette];
+  const lines = concept.phrase_lines;
+  const startY = lines.length === 4 ? 1700 : lines.length === 3 ? 1900 : 2150;
+  const gap = lines.length === 4 ? 610 : lines.length === 3 ? 760 : 920;
+  const safeWidth = 3500;
+  const sizes = lines.map(line => Math.min(560, Math.floor(safeWidth / Math.max(1, line.length * 0.7))));
+  const text = lines.map((line, index) => {
+    const last = index === lines.length - 1;
+    return `<text x="2250" y="${startY + index * gap}" text-anchor="middle" fill="${last ? (caution ? p.ink : p.reverse) : p.ink}" font-family="Arial Black,DejaVu Sans,sans-serif" font-size="${sizes[index]}" font-weight="900" letter-spacing="4">${esc(line.toUpperCase())}</text>`;
+  }).join("\n");
+  const lastSize = sizes[sizes.length - 1]!;
+  const lastY = startY + (lines.length - 1) * gap;
+  const band = `<rect x="300" y="${lastY - lastSize + 80}" width="3900" height="${lastSize + 190}" rx="60" fill="${p.accent}"/>`;
+  const hazard = caution ? `<defs><pattern id="shirtHazard" width="250" height="170" patternUnits="userSpaceOnUse" patternTransform="skewX(-28)"><rect width="125" height="170" fill="#111111"/><rect x="125" width="125" height="170" fill="#FFD21F"/></pattern></defs><rect x="500" y="690" width="3500" height="170" fill="url(#shirtHazard)"/><rect x="500" y="4500" width="3500" height="170" fill="url(#shirtHazard)"/>` : "";
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="4500" height="5400" viewBox="0 0 4500 5400">
+  ${hazard}
+  <rect x="950" y="1020" width="2600" height="230" rx="115" fill="${p.ink}"/>
+  <text x="2250" y="1180" text-anchor="middle" fill="${caution ? p.accent : p.reverse}" font-family="Arial,DejaVu Sans,sans-serif" font-size="110" font-weight="900" letter-spacing="14">${esc(concept.eyebrow.toUpperCase())}</text>
+  ${band}
+  ${text}
+  <line x1="700" y1="4200" x2="3800" y2="4200" stroke="${caution ? p.accent : p.accent}" stroke-width="24"/>
+  <text x="2250" y="4420" text-anchor="middle" fill="${p.ink}" font-family="Arial,DejaVu Sans,sans-serif" font-size="130" font-weight="900" letter-spacing="9">${esc(concept.footer.toUpperCase())}</text>
+  </svg>`;
+}
+
 export function buildSvg(concept: Concept, productType: ProductType = "standard-flag", layout: "automatic" | "caution" = "automatic"): string {
-  return productType === "garden-flag" ? buildGardenSvg(concept, layout) : buildLandscapeSvg(concept);
+  if (productType === "garden-flag") return buildGardenSvg(concept, layout);
+  if (productType === "shirt") return buildShirtSvg(concept, layout);
+  return buildLandscapeSvg(concept);
 }
 
 export async function renderPng(svg: string, destination: string): Promise<void> {

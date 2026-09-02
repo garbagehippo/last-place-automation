@@ -5,7 +5,10 @@ import { getProductProfile } from "../src/product.js";
 test("uses independent dimensions, templates, and prices by product format", () => {
   const standard = getProductProfile("standard-flag");
   const garden = getProductProfile("garden-flag");
+  const shirt = getProductProfile("shirt");
   assert.deepEqual([standard.width, standard.height, standard.defaultPriceCents], [5400, 3600, 2499]);
   assert.deepEqual([garden.width, garden.height, garden.defaultPriceCents], [3600, 5400, 2499]);
   assert.equal(garden.templateSecret, "PRINTIFY_GARDEN_FLAG_TEMPLATE_PRODUCT_ID");
+  assert.deepEqual([shirt.width, shirt.height, shirt.defaultPriceCents], [4500, 5400, 2499]);
+  assert.equal(shirt.templateSecret, "PRINTIFY_SHIRT_TEMPLATE_PRODUCT_ID");
 });

@@ -23,6 +23,7 @@ Create these under **Settings → Secrets and variables → Actions**.
 - `PRINTIFY_SHOP_ID`
 - `PRINTIFY_FLAG_TEMPLATE_PRODUCT_ID`
 - `PRINTIFY_GARDEN_FLAG_TEMPLATE_PRODUCT_ID`
+- `PRINTIFY_SHIRT_TEMPLATE_PRODUCT_ID`
 
 ### Optional variables
 

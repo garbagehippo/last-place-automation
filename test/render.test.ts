@@ -35,3 +35,21 @@ test("renders garden flags in a portrait caution layout", () => {
   assert.match(svg, /id="hazard"/);
   assert.match(svg, /I SUCK AT/);
 });
+
+test("renders shirts on a transparent portrait canvas", () => {
+  const concept = {
+    phrase_lines: ["I SUCK AT", "FANTASY", "FOOTBALL"],
+    eyebrow: "LAST PLACE CERTIFIED",
+    footer: "ASK ANYONE IN MY LEAGUE",
+    style: "scoreboard" as const,
+    palette: "orange" as const,
+    title: "Fantasy Football Loser Shirt Last Place Punishment",
+    description: "A sufficiently long product description for validating transparent shirt artwork in the automated workflow.",
+    tags: ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen"],
+    rationale: "A direct and readable fantasy-football punishment shirt design."
+  };
+  const svg = buildSvg(concept, "shirt", "caution");
+  assert.match(svg, /width="4500" height="5400"/);
+  assert.match(svg, /id="shirtHazard"/);
+  assert.doesNotMatch(svg, /<rect width="4500" height="5400"/);
+});

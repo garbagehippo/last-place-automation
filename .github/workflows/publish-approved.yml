@@ -35,6 +35,7 @@ jobs:
           PRINTIFY_SHOP_ID: ${{ secrets.PRINTIFY_SHOP_ID }}
           PRINTIFY_FLAG_TEMPLATE_PRODUCT_ID: ${{ secrets.PRINTIFY_FLAG_TEMPLATE_PRODUCT_ID }}
           PRINTIFY_GARDEN_FLAG_TEMPLATE_PRODUCT_ID: ${{ secrets.PRINTIFY_GARDEN_FLAG_TEMPLATE_PRODUCT_ID }}
+          PRINTIFY_SHIRT_TEMPLATE_PRODUCT_ID: ${{ secrets.PRINTIFY_SHIRT_TEMPLATE_PRODUCT_ID }}
       - name: Record published product
         run: |
           git config user.name "last-place-bot"

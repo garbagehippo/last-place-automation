@@ -15,6 +15,7 @@ on:
         options:
           - standard-flag
           - garden-flag
+          - shirt
       concept_id:
         description: Optional curated concept ID; leave blank for the next unused concept
         required: false

@@ -31,6 +31,15 @@ export function buildPrintAreas(template: any, enabledVariants: Array<{ id: numb
   })).filter((area: any) => area.variant_ids.length > 0 && area.placeholders.length > 0);
 }
 
+export function priceForVariant(variant: any, manifest: Manifest): number {
+  if (manifest.product_type !== "shirt") return manifest.retail_price_cents;
+  const searchable = [variant.title, ...(Array.isArray(variant.options) ? variant.options : [])]
+    .filter(Boolean).join(" ").toUpperCase().replace(/\s+/g, " ");
+  if (/(^|[ /-])3XL($|[ /-])/.test(searchable)) return 2799;
+  if (/(^|[ /-])2XL($|[ /-])/.test(searchable)) return 2699;
+  return 2499;
+}
+
 export async function publishCandidate(candidateDir: string, manifest: Manifest): Promise<string> {
   const shopId = process.env.PRINTIFY_SHOP_ID;
   const profile = productProfiles[manifest.product_type];
@@ -44,7 +53,7 @@ export async function publishCandidate(candidateDir: string, manifest: Manifest)
   });
   const template = await request(`/shops/${shopId}/products/${templateId}.json`);
   const enabledVariants = template.variants.filter((v: any) => v.is_enabled).map((v: any) => ({
-    id: v.id, price: manifest.retail_price_cents, is_enabled: true
+    id: v.id, price: priceForVariant(v, manifest), is_enabled: true
   }));
   const printAreas = buildPrintAreas(template, enabledVariants, upload.id);
   if (!printAreas.length) throw new Error("Template has no populated print areas to clone");
