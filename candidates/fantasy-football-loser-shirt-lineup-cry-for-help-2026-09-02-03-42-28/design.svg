@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="4500" height="5400" viewBox="0 0 4500 5400">
+  
+  <rect x="950" y="1020" width="2600" height="230" rx="115" fill="#171310"/>
+  <text x="2250" y="1180" text-anchor="middle" fill="#FFFFFF" font-family="Arial,DejaVu Sans,sans-serif" font-size="110" font-weight="900" letter-spacing="14">WEEKLY LINEUP REPORT</text>
+  <rect x="300" y="2793" width="3900" height="547" rx="60" fill="#E8652A"/>
+  <text x="2250" y="2150" text-anchor="middle" fill="#171310" font-family="Arial Black,DejaVu Sans,sans-serif" font-size="416" font-weight="900" letter-spacing="4">MY LINEUP IS</text>
+<text x="2250" y="3070" text-anchor="middle" fill="#FFFFFF" font-family="Arial Black,DejaVu Sans,sans-serif" font-size="357" font-weight="900" letter-spacing="4">A CRY FOR HELP</text>
+  <line x1="700" y1="4200" x2="3800" y2="4200" stroke="#E8652A" stroke-width="24"/>
+  <text x="2250" y="4420" text-anchor="middle" fill="#171310" font-family="Arial,DejaVu Sans,sans-serif" font-size="130" font-weight="900" letter-spacing="9">PLEASE SEND WAIVER HELP</text>
+  </svg>
