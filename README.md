@@ -4,8 +4,8 @@ Approval-driven product automation for **Last Place Outfitters**.
 
 ## What it does
 
-1. A scheduled workflow asks OpenAI for five concepts using a reusable theme file.
-2. Risk filters remove unsafe or malformed concepts and a separate AI merchandising review selects only a candidate that clears minimum clarity, humor, natural-language, and buyer-intent scores.
+1. A scheduled workflow selects an unused human-curated concept from a reusable theme file.
+2. OpenAI creates the visual treatment and truthful Etsy listing without changing the approved printed phrase.
 3. Exact SVG typography is rendered into a 5400×3600 print-ready PNG.
 4. A pull request displays the design, listing copy, tags, price, and rationale.
 5. **Merge** the pull request to approve and publish through Printify to Etsy. **Close** it to reject.
@@ -44,7 +44,7 @@ After adding only the `PRINTIFY_API_TOKEN` secret, run **Actions → Inspect Pri
 Themes live in `config/themes`. The automation logic, Printify connection, approval flow, and publishing code do not change when the audience changes.
 
 1. Copy `config/themes/_template.json` to a new lowercase key such as `hunting-humor.json`.
-2. Describe the audience, motivation, tone, occasions, creative directions, and subjects to avoid.
+2. Describe the audience, motivation, tone, occasions, search language, subjects to avoid, and a curated queue of phrases worth producing.
 3. Commit the file.
 4. Enter `hunting-humor` when manually running **Generate candidate**, or set the repository variable `ACTIVE_THEME` to use it for scheduled runs.
 

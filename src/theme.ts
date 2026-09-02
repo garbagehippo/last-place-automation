@@ -10,7 +10,15 @@ export const ThemeSchema = z.object({
   tone: z.array(z.string().min(2)).min(1),
   occasions: z.array(z.string().min(2)).min(1),
   concept_directions: z.array(z.string().min(5)).min(1),
-  avoid: z.array(z.string().min(2)).default([])
+  avoid: z.array(z.string().min(2)).default([]),
+  search_terms: z.array(z.string().min(2).max(40)).min(2),
+  concepts: z.array(z.object({
+    id: z.string().regex(/^[a-z0-9-]+$/),
+    phrase_lines: z.array(z.string().min(1).max(28)).min(2).max(4),
+    eyebrow: z.string().max(30),
+    footer: z.string().max(45),
+    intent: z.string().min(10).max(240)
+  })).min(1)
 });
 
 export type Theme = z.infer<typeof ThemeSchema>;

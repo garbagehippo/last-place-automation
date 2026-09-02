@@ -11,5 +11,28 @@
     "terrible lineup or waiver decisions",
     "league-wide proof of failure"
   ],
-  "avoid": ["official league terminology", "team names", "player names", "television references", "copied marketplace slogans"]
+  "avoid": ["official league terminology", "team names", "player names", "television references", "copied marketplace slogans"],
+  "search_terms": ["fantasy football loser", "last place punishment", "funny loser flag", "league gag gift"],
+  "concepts": [
+    { "id": "drafted-this-disaster", "phrase_lines": ["I DRAFTED", "THIS DISASTER"], "eyebrow": "LAST PLACE CERTIFIED", "footer": "ASK ANYONE IN MY LEAGUE", "intent": "A direct confession blaming the manager for building a terrible roster." },
+    { "id": "lineup-cry-for-help", "phrase_lines": ["MY LINEUP IS", "A CRY FOR HELP"], "eyebrow": "WEEKLY LINEUP REPORT", "footer": "PLEASE SEND WAIVER HELP", "intent": "Mocks a roster so bad that the starting lineup looks like a distress signal." },
+    { "id": "another-bad-draft", "phrase_lines": ["ANOTHER YEAR", "ANOTHER BAD DRAFT"], "eyebrow": "DRAFT DAY TRADITION", "footer": "CONSISTENTLY FINISHING LAST", "intent": "An annual punishment for the manager who repeatedly ruins the season on draft day." },
+    { "id": "better-on-paper", "phrase_lines": ["MY TEAM WAS", "BETTER ON PAPER"], "eyebrow": "OFFICIAL EXCUSE", "footer": "THE STANDINGS DISAGREE", "intent": "Uses the classic losing-manager excuse and lets the league publicly reject it." },
+    { "id": "sundays-for-regret", "phrase_lines": ["SUNDAYS ARE", "FOR REGRET"], "eyebrow": "FANTASY FOOTBALL SEASON", "footer": "I SET THIS LINEUP MYSELF", "intent": "Connects weekly football viewing with regretting every lineup decision." },
+    { "id": "certified-last-place", "phrase_lines": ["CERTIFIED", "LAST PLACE", "MANAGER"], "eyebrow": "LEAGUE VERIFIED", "footer": "RESULTS SPEAK FOR THEMSELVES", "intent": "A mock official credential declaring the owner a proven last-place manager." },
+    { "id": "losing-streak", "phrase_lines": ["ASK ME ABOUT", "MY LOSING STREAK"], "eyebrow": "FANTASY FOOTBALL EXPERT", "footer": "I HAVE PLENTY OF EXPERIENCE", "intent": "Invites public embarrassment about an ongoing streak of fantasy losses." },
+    { "id": "league-donation", "phrase_lines": ["LEAGUE DONATION", "CHAMPION"], "eyebrow": "ENTRY FEE WELL SPENT", "footer": "THANKS FOR FUNDING THE PRIZE", "intent": "Frames the last-place manager's entry fee as a yearly donation to the winners." },
+    { "id": "bench-outscored-me", "phrase_lines": ["MY BENCH", "OUTSCORED ME"], "eyebrow": "LINEUP MANAGEMENT AWARD", "footer": "EVERY SINGLE POINT COUNTS", "intent": "Punishes the familiar mistake of leaving the week's best scorers on the bench." },
+    { "id": "projections-lied", "phrase_lines": ["THE PROJECTIONS", "LIED TO ME"], "eyebrow": "OFFICIAL LAST PLACE EXCUSE", "footer": "I ACCEPT NO RESPONSIBILITY", "intent": "Lets a bad manager blame projections while the league knows the real problem." },
+    { "id": "waiver-wire-victim", "phrase_lines": ["WAIVER WIRE", "VICTIM"], "eyebrow": "CLAIM DENIED", "footer": "ALWAYS ONE SPOT TOO LATE", "intent": "Targets the manager who consistently misses every useful waiver claim." },
+    { "id": "playoffs-viewer", "phrase_lines": ["PLAYOFFS", "VIEWER", "NOT PARTICIPANT"], "eyebrow": "POSTSEASON STATUS", "footer": "BETTER LUCK NEXT DRAFT", "intent": "Makes it unmistakable that the manager watches the fantasy playoffs from outside." },
+    { "id": "first-pick-last-place", "phrase_lines": ["FIRST PICK", "LAST PLACE"], "eyebrow": "MAXIMUM OPPORTUNITY", "footer": "MINIMUM RESULTS", "intent": "Mocks the manager who wasted a premium draft position and still finished last." },
+    { "id": "autodraft-better", "phrase_lines": ["AUTODRAFT WOULD", "HAVE DONE BETTER"], "eyebrow": "DRAFT GRADE FINAL", "footer": "EVERY PICK WAS A CHOICE", "intent": "A sharp punishment for someone whose hand-picked roster lost to basic automation." },
+    { "id": "season-ended-early", "phrase_lines": ["MY SEASON ENDED", "IN WEEK FOUR"], "eyebrow": "EARLY ELIMINATION CLUB", "footer": "I KEPT SETTING MY LINEUP", "intent": "Exaggerates how quickly a terrible draft and start destroyed the season." },
+    { "id": "number-one-at-last", "phrase_lines": ["NUMBER ONE", "AT FINISHING LAST"], "eyebrow": "LEAGUE LEADER", "footer": "FINALLY TOP OF SOMETHING", "intent": "Turns being the worst manager into the only category they managed to lead." },
+    { "id": "roster-under-construction", "phrase_lines": ["ROSTER UNDER", "CONSTRUCTION"], "eyebrow": "PROJECT DELAYED", "footer": "COMPLETION DATE UNKNOWN", "intent": "Treats a perpetually bad roster like a failed construction project." },
+    { "id": "trade-deadline-spectator", "phrase_lines": ["TRADE DEADLINE", "SPECTATOR"], "eyebrow": "NO OFFERS RECEIVED", "footer": "THE LEAGUE STOPPED ANSWERING", "intent": "Mocks a last-place manager who could not make a useful trade." },
+    { "id": "started-wrong-guy", "phrase_lines": ["I STARTED", "THE WRONG GUY"], "eyebrow": "AGAIN", "footer": "MY BENCH KNEW BETTER", "intent": "A universal fantasy-football confession about choosing the wrong starter." },
+    { "id": "weekly-free-win", "phrase_lines": ["YOUR WEEKLY", "FREE WIN"], "eyebrow": "MATCHUP GUARANTEE", "footer": "SCHEDULE ME WITH CONFIDENCE", "intent": "Makes the loser advertise that every opponent could count on an easy victory." }
+  ]
 }

@@ -6,5 +6,15 @@
   "tone": ["tone one", "tone two"],
   "occasions": ["occasion one", "occasion two"],
   "concept_directions": ["original creative territory one", "original creative territory two"],
-  "avoid": ["brands", "protected phrases", "unwanted subject matter"]
+  "avoid": ["brands", "protected phrases", "unwanted subject matter"],
+  "search_terms": ["primary buyer phrase", "secondary buyer phrase"],
+  "concepts": [
+    {
+      "id": "unique-concept-id",
+      "phrase_lines": ["PRINTED LINE ONE", "PRINTED LINE TWO"],
+      "eyebrow": "SMALL TOP LABEL",
+      "footer": "SMALL SUPPORTING LINE",
+      "intent": "Why a real buyer would understand and purchase this exact phrase."
+    }
+  ]
 }
