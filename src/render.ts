@@ -46,37 +46,47 @@ function buildLandscapeSvg(concept: Concept): string {
 }
 
 function buildGardenSvg(concept: Concept, layout: "automatic" | "caution"): string {
-  const caution = layout === "caution";
-  const base = caution ? { bg: "#FFD21F", ink: "#0B0B0B", accent: "#0B0B0B", reverse: "#FFFFFF" } : palettes[concept.palette];
-  const lines = concept.phrase_lines;
-  const startY = lines.length === 4 ? 1370 : lines.length === 3 ? 1450 : 1700;
-  const gap = lines.length === 4 ? 590 : lines.length === 3 ? 690 : 900;
-  const safeWidth = 2860;
-  const fontSizes = lines.map(line => Math.min(480, Math.floor(safeWidth / Math.max(1, line.length * 0.68))));
-  const lastFontSize = fontSizes[fontSizes.length - 1]!;
-  const lastY = startY + (lines.length - 1) * gap;
-  const bandY = lastY - lastFontSize + 80;
-  const text = lines.map((line, index) => {
-    const isLast = index === lines.length - 1;
-    return `<text x="1800" y="${startY + index * gap}" text-anchor="middle" fill="${isLast ? (caution ? "#FFD21F" : base.reverse) : base.ink}" font-family="Arial Black,DejaVu Sans,sans-serif" font-size="${fontSizes[index]}" font-weight="900" letter-spacing="3">${esc(line.toUpperCase())}</text>`;
+  const colors = layout === "caution"
+    ? { bg: "#FFD21F", primary: "#0B0B0B", accent: "#0B0B0B", accentText: "#FFD21F" }
+    : concept.palette === "blue"
+      ? { bg: "#123B7A", primary: "#FFFFFF", accent: "#F26A21", accentText: "#123B7A" }
+      : { bg: "#123C2B", primary: "#F4E8C8", accent: "#D9AA43", accentText: "#123C2B" };
+
+  const phrase = concept.phrase_lines.join(" ").toUpperCase();
+  const lines = phrase === "FANTASY FOOTBALL LOSER"
+    ? ["FANTASY", "FOOTBALL", "LOSER"]
+    : phrase === "LAST PLACE IN FANTASY FOOTBALL"
+      ? ["LAST PLACE", "IN FANTASY", "FOOTBALL"]
+      : concept.phrase_lines.map(line => line.toUpperCase());
+  const displayLines = lines.slice(0, -1);
+  const featuredLine = lines[lines.length - 1]!;
+  const mainText = displayLines.map((line, index) => {
+    const y = 1570 + index * 610;
+    return `<text x="1800" y="${y}" text-anchor="middle" fill="${colors.primary}" font-family="Arial Black,DejaVu Sans,sans-serif" font-size="500" font-weight="900" letter-spacing="10" textLength="${line.length > 9 ? 3060 : 2780}" lengthAdjust="spacingAndGlyphs">${esc(line)}</text>`;
   }).join("\n");
-  const stripes = caution ? `
-  <defs><pattern id="hazard" width="260" height="180" patternUnits="userSpaceOnUse" patternTransform="skewX(-28)"><rect width="130" height="180" fill="#0B0B0B"/><rect x="130" width="130" height="180" fill="#FFD21F"/></pattern></defs>
-  <rect x="180" y="260" width="3240" height="210" fill="url(#hazard)"/>
-  <rect x="180" y="4930" width="3240" height="210" fill="url(#hazard)"/>` : `
-  <rect x="220" y="290" width="3160" height="75" rx="38" fill="${base.accent}"/>
-  <rect x="220" y="5035" width="3160" height="75" rx="38" fill="${base.accent}"/>`;
+  const footer = concept.footer.toUpperCase();
+  const footerLines = footer === "LAST PLACE AND PROUD" ? ["LAST PLACE", "AND PROUD"]
+    : footer === "ASK ANYONE IN MY LEAGUE" ? ["ASK ANYONE", "IN MY LEAGUE"]
+      : footer === "WORST TEAM IN THE LEAGUE" ? ["WORST TEAM", "IN THE LEAGUE"]
+        : [footer];
+  const footerText = footerLines.map((line, index) => `<text x="1800" y="${3860 + index * 350}" text-anchor="middle" fill="${index === 0 ? colors.accent : colors.primary}" font-family="Arial Black,DejaVu Sans,sans-serif" font-size="${footerLines.length === 1 ? 170 : index === 0 ? 205 : 165}" font-weight="900" letter-spacing="22">${esc(line)}</text>`).join("\n");
 
   return `<svg xmlns="http://www.w3.org/2000/svg" width="3600" height="5400" viewBox="0 0 3600 5400">
-  <rect width="3600" height="5400" fill="${base.bg}"/>
-  <rect x="110" y="110" width="3380" height="5180" rx="55" fill="none" stroke="${base.ink}" stroke-width="28"/>
-  ${stripes}
-  <rect x="620" y="610" width="2360" height="230" rx="115" fill="${caution ? base.ink : base.accent}"/>
-  <text x="1800" y="770" text-anchor="middle" fill="${caution ? "#FFD21F" : base.bg}" font-family="Arial,DejaVu Sans,sans-serif" font-size="104" font-weight="900" letter-spacing="13">${esc(concept.eyebrow.toUpperCase())}</text>
-  <rect x="260" y="${bandY}" width="3080" height="${lastFontSize + 180}" rx="45" fill="${base.accent}"/>
-  ${text}
-  <line x1="430" y1="4070" x2="3170" y2="4070" stroke="${caution ? base.ink : base.accent}" stroke-width="24"/>
-  <text x="1800" y="4360" text-anchor="middle" fill="${base.ink}" font-family="Arial,DejaVu Sans,sans-serif" font-size="145" font-weight="900" letter-spacing="7">${esc(concept.footer.toUpperCase())}</text>
+  <rect width="3600" height="5400" fill="${colors.bg}"/>
+  <rect x="105" y="105" width="3390" height="5190" rx="48" fill="none" stroke="${colors.primary}" stroke-width="28"/>
+  <rect x="160" y="160" width="3280" height="5080" rx="38" fill="none" stroke="${colors.accent}" stroke-width="12"/>
+  <text x="1800" y="480" text-anchor="middle" fill="${colors.accent}" font-family="Arial,DejaVu Sans,sans-serif" font-size="108" font-weight="900" letter-spacing="20" textLength="2860" lengthAdjust="spacingAndGlyphs">${esc(concept.eyebrow.toUpperCase())}</text>
+  <line x1="430" y1="800" x2="1310" y2="800" stroke="${colors.accent}" stroke-width="20"/>
+  <line x1="2290" y1="800" x2="3170" y2="800" stroke="${colors.accent}" stroke-width="20"/>
+  <ellipse cx="1800" cy="800" rx="330" ry="175" fill="${colors.accent}" transform="rotate(-12 1800 800)"/>
+  <path d="M1660 765 L1940 835 M1710 710 L1690 820 M1780 725 L1760 835 M1850 740 L1830 850 M1920 755 L1900 865" stroke="${colors.accentText}" stroke-width="27" stroke-linecap="round" fill="none"/>
+  ${mainText}
+  <path d="M280 2470 H3320 L3160 3390 H440 Z" fill="${colors.accent}"/>
+  <path d="M410 2595 H3190 L3075 3265 H525 Z" fill="${colors.bg}"/>
+  <text x="1800" y="2930" text-anchor="middle" dominant-baseline="central" fill="${colors.primary}" font-family="Arial Black,DejaVu Sans,sans-serif" font-size="760" font-weight="900" letter-spacing="16" textLength="2320" lengthAdjust="spacingAndGlyphs">${esc(featuredLine)}</text>
+  ${footerText}
+  <g fill="${colors.accent}"><path d="M815 4470 l45 92 102 15-74 72 18 102-91-48-91 48 18-102-74-72 102-15z"/><path d="M1800 4470 l45 92 102 15-74 72 18 102-91-48-91 48 18-102-74-72 102-15z"/><path d="M2785 4470 l45 92 102 15-74 72 18 102-91-48-91 48 18-102-74-72 102-15z"/></g>
+  <rect x="500" y="4910" width="2600" height="105" rx="52" fill="${colors.accent}"/>
   </svg>`;
 }
 

@@ -32,7 +32,8 @@ test("renders garden flags in a portrait caution layout", () => {
   };
   const svg = buildSvg(concept, "garden-flag", "caution");
   assert.match(svg, /width="3600" height="5400"/);
-  assert.match(svg, /id="hazard"/);
+  assert.match(svg, /<ellipse[^>]*fill="#0B0B0B"/);
+  assert.match(svg, /M280 2470 H3320 L3160 3390 H440 Z/);
   assert.match(svg, /I SUCK AT/);
 });
 
@@ -68,5 +69,5 @@ test("keeps the blue garden-flag eyebrow readable", () => {
   };
   const svg = buildSvg(concept, "garden-flag", "automatic");
   assert.match(svg, /fill="#F26A21"\/?>/);
-  assert.match(svg, /fill="#123B7A"[^>]*>LAST PLACE CERTIFIED/);
+  assert.match(svg, /fill="#F26A21"[^>]*>LAST PLACE CERTIFIED/);
 });
