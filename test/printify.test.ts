@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { normalizeMarketplaceTitle, priceForVariant, templateSecretForManifest } from "../src/printify.js";
+import { buildEnabledVariants, normalizeMarketplaceTitle, priceForVariant, templateSecretForManifest } from "../src/printify.js";
 
 const manifest = {
   product_type: "shirt",
@@ -26,4 +26,22 @@ test("routes surgical-tech shirts to the healthcare template", () => {
 test("normalizes excessive title capitalization while preserving medical acronyms", () => {
   assert.equal(normalizeMarketplaceTitle("SURGICAL TECH AND PROUD SHIRT"), "Surgical Tech And Proud Shirt");
   assert.equal(normalizeMarketplaceTitle("BUILT FOR THE OR Surgical Tech Shirt"), "Built For The OR Surgical Tech Shirt");
+});
+
+test("preserves the template default variant for the marketplace title mockup", () => {
+  const variants = buildEnabledVariants({ variants: [
+    { id: 1, title: "Black / S", is_enabled: true, is_default: false },
+    { id: 2, title: "White / S", is_enabled: true, is_default: true },
+    { id: 3, title: "Gray / S", is_enabled: false, is_default: false }
+  ] }, manifest);
+  assert.deepEqual(variants.map((variant: { id: number; is_default: boolean }) => [variant.id, variant.is_default]), [[1, false], [2, true]]);
+});
+
+test("uses the first enabled variant when a template has no explicit default", () => {
+  const variants = buildEnabledVariants({ variants: [
+    { id: 1, title: "Black / S", is_enabled: false },
+    { id: 2, title: "White / S", is_enabled: true },
+    { id: 3, title: "Gray / S", is_enabled: true }
+  ] }, manifest);
+  assert.deepEqual(variants.map((variant: { id: number; is_default: boolean }) => [variant.id, variant.is_default]), [[2, true], [3, false]]);
 });

@@ -58,6 +58,24 @@ export function priceForVariant(variant: any, manifest: Manifest): number {
   return 2499;
 }
 
+export type PublishVariant = { id: number; price: number; is_enabled: true; is_default: boolean };
+
+export function buildEnabledVariants(template: any, manifest: Manifest): PublishVariant[] {
+  const enabled = template.variants.filter((variant: any) => variant.is_enabled);
+  if (!enabled.length) return [];
+
+  // Printify uses the default variant's mockup as the sales-channel title image.
+  // Preserve the template's deliberate default instead of letting the API choose
+  // an arbitrary first variant when the product is created.
+  const preferred = enabled.find((variant: any) => variant.is_default) || enabled[0];
+  return enabled.map((variant: any) => ({
+    id: variant.id,
+    price: priceForVariant(variant, manifest),
+    is_enabled: true,
+    is_default: variant.id === preferred.id
+  }));
+}
+
 export async function publishCandidate(candidateDir: string, manifest: Manifest): Promise<string> {
   const shopId = process.env.PRINTIFY_SHOP_ID;
   const templateSecret = templateSecretForManifest(manifest);
@@ -74,9 +92,9 @@ export async function publishCandidate(candidateDir: string, manifest: Manifest)
   if (manifest.theme === "surgical-tech" && !/healthcare/i.test(String(template.title || ""))) {
     throw new Error(`Refusing to publish surgical-tech product from non-healthcare template: ${template.title || template.id}`);
   }
-  const enabledVariants = template.variants.filter((v: any) => v.is_enabled).map((v: any) => ({
-    id: v.id, price: priceForVariant(v, manifest), is_enabled: true
-  }));
+  const enabledVariants = buildEnabledVariants(template, manifest);
+  const defaultVariant = template.variants.find((variant: any) => enabledVariants.some((enabled: PublishVariant) => enabled.id === variant.id && enabled.is_default));
+  console.log(`Default marketplace variant: ${defaultVariant?.title || defaultVariant?.id || "unknown"}`);
   console.log(`Enabled template variants (${enabledVariants.length}): ${template.variants.filter((v: any) => v.is_enabled).map((v: any) => v.title).join(" | ")}`);
   const printAreas = buildPrintAreas(template, enabledVariants, upload.id);
   if (!printAreas.length) throw new Error("Template has no populated print areas to clone");
