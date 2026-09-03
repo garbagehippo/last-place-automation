@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="4500" height="5400" viewBox="0 0 4500 5400">
+  <path d="M1020 1510 C1550 1230 2950 1230 3480 1510" fill="none" stroke="#D8DEDF" stroke-width="26"/>
+  <path d="M1210 1390 C1710 1190 2790 1190 3290 1390" fill="none" stroke="#62767A" stroke-width="14"/>
+  <g color="#62767A"><g transform="translate(2250 1020) rotate(-8)" fill="none" stroke="currentColor" stroke-width="34" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="-125" cy="-40" r="92"/><circle cx="125" cy="-40" r="92"/>
+    <path d="M-55 25 L410 390 M55 25 L-410 390"/>
+    <path d="M410 390 L520 500 M-410 390 L-520 500" stroke-width="24"/>
+  </g></g>
+  <circle cx="1390" cy="1220" r="24" fill="#A45C3A"/>
+  <circle cx="3110" cy="1220" r="24" fill="#A45C3A"/>
+  <text x="2250" y="1740" text-anchor="middle" fill="#62767A" font-family="Arial,DejaVu Sans,sans-serif" font-size="92" font-weight="800" letter-spacing="10">SURGICAL TECHNOLOGIST</text>
+  <text x="2250" y="2320" text-anchor="middle" fill="#25292B" font-family="Georgia,DejaVu Serif,serif" font-size="463" font-weight="900" letter-spacing="3" textLength="3800" lengthAdjust="spacingAndGlyphs">CALM HANDS</text>
+<text x="2250" y="3100" text-anchor="middle" fill="#A45C3A" font-family="Arial Black,DejaVu Sans,sans-serif" font-size="487" font-weight="900" letter-spacing="3" textLength="3800" lengthAdjust="spacingAndGlyphs">SHARP MIND</text>
+  <g transform="translate(2250 3700)" fill="#A45C3A">
+    <circle cx="-1460" r="20"/><circle cx="-1370" r="12"/><circle cx="1370" r="12"/><circle cx="1460" r="20"/>
+  </g>
+  <text x="2250" y="3750" text-anchor="middle" fill="#62767A" font-family="Arial,DejaVu Sans,sans-serif" font-size="104" font-weight="800" letter-spacing="5">PRECISION UNDER PRESSURE</text>
+  <path d="M1320 4100 C1750 4300 2750 4300 3180 4100" fill="none" stroke="#62767A" stroke-width="20"/>
+  <path d="M1540 4160 C1900 4290 2600 4290 2960 4160" fill="none" stroke="#A45C3A" stroke-width="12"/>
+  </svg>
