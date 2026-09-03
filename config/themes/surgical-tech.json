@@ -1,0 +1,125 @@
+{
+  "key": "surgical-tech",
+  "name": "Surgical Technologist Gifts",
+  "audience": "Surgical technologists, scrub techs, operating-room team members, graduates, coworkers, friends, and family shopping for profession-specific gifts.",
+  "buyer_motivation": "Celebrate a surgical technologist's skill, precision, composure, graduation, career identity, or contribution to the operating-room team.",
+  "tone": ["confident", "clean", "profession-proud", "giftable", "warm"],
+  "occasions": ["surgical technologist week", "graduation", "new job", "coworker gift", "birthday", "holiday gift"],
+  "concept_directions": [
+    "professional pride that feels wearable outside the hospital",
+    "precision and composure under pressure",
+    "recognition for an essential but often overlooked operating-room role",
+    "clean typography with a subtle operating-room visual character"
+  ],
+  "avoid": [
+    "hospital and healthcare-system names",
+    "school names",
+    "medical claims",
+    "patient references",
+    "graphic anatomy or blood",
+    "trademarked brands",
+    "copied marketplace slogans",
+    "gender stereotypes"
+  ],
+  "search_terms": [
+    "surgical tech shirt",
+    "scrub tech gift",
+    "surgical technologist",
+    "operating room shirt",
+    "surgical tech week",
+    "OR team gift"
+  ],
+  "default_product_types": ["shirt"],
+  "concepts": [
+    {
+      "id": "calm-hands-sharp-mind",
+      "phrase_lines": ["CALM HANDS", "SHARP MIND"],
+      "eyebrow": "SURGICAL TECHNOLOGIST",
+      "footer": "PRECISION UNDER PRESSURE",
+      "intent": "A confident profession-pride design centered on the composure and precision required of a surgical technologist.",
+      "layout": "automatic",
+      "palette": "monochrome",
+      "product_types": ["shirt"]
+    },
+    {
+      "id": "scrubbed-in-dialed-in",
+      "phrase_lines": ["SCRUBBED IN", "DIALED IN"],
+      "eyebrow": "OPERATING ROOM MODE",
+      "footer": "READY WHEN IT MATTERS",
+      "intent": "A concise, energetic design that celebrates being completely focused and prepared in the operating room.",
+      "layout": "automatic",
+      "palette": "blue",
+      "product_types": ["shirt"]
+    },
+    {
+      "id": "counted-twice-trusted-always",
+      "phrase_lines": ["COUNTED TWICE", "TRUSTED ALWAYS"],
+      "eyebrow": "SURGICAL TECH",
+      "footer": "DETAILS MAKE THE DIFFERENCE",
+      "intent": "A respectful profession-specific design recognizing careful attention to detail without making a medical promise.",
+      "layout": "automatic",
+      "palette": "green",
+      "product_types": ["shirt"]
+    },
+    {
+      "id": "built-for-the-or",
+      "phrase_lines": ["BUILT FOR", "THE O.R."],
+      "eyebrow": "SURGICAL TECHNOLOGIST",
+      "footer": "STEADY FOCUSED READY",
+      "intent": "A bold identity shirt for surgical technologists who are proud of working in the operating-room environment.",
+      "layout": "automatic",
+      "palette": "orange",
+      "product_types": ["shirt"]
+    },
+    {
+      "id": "precision-is-my-specialty",
+      "phrase_lines": ["PRECISION IS", "MY SPECIALTY"],
+      "eyebrow": "SURGICAL TECH",
+      "footer": "FOCUSED ON EVERY DETAIL",
+      "intent": "A polished giftable statement connecting surgical-technology pride with precision and close attention to detail.",
+      "layout": "automatic",
+      "palette": "monochrome",
+      "product_types": ["shirt"]
+    },
+    {
+      "id": "essential-in-the-or",
+      "phrase_lines": ["ESSENTIAL", "IN THE O.R."],
+      "eyebrow": "SURGICAL TECHNOLOGIST",
+      "footer": "AN IMPORTANT PART OF THE TEAM",
+      "intent": "A recognition-focused gift for an often overlooked operating-room professional and the people celebrating them.",
+      "layout": "automatic",
+      "palette": "blue",
+      "product_types": ["shirt"]
+    },
+    {
+      "id": "sterile-field-steady-mind",
+      "phrase_lines": ["STERILE FIELD", "STEADY MIND"],
+      "eyebrow": "SCRUB TECH MODE",
+      "footer": "FOCUSED FROM START TO FINISH",
+      "intent": "A profession-aware design pairing a recognizable work responsibility with the calm concentration the role demands.",
+      "layout": "automatic",
+      "palette": "green",
+      "product_types": ["shirt"]
+    },
+    {
+      "id": "or-team-all-star",
+      "phrase_lines": ["O.R. TEAM", "ALL-STAR"],
+      "eyebrow": "SURGICAL TECH",
+      "footer": "SKILL FOCUS TEAMWORK",
+      "intent": "A positive coworker or appreciation gift that celebrates the surgical technologist as an important team member.",
+      "layout": "automatic",
+      "palette": "orange",
+      "product_types": ["shirt"]
+    },
+    {
+      "id": "surgical-tech-and-proud",
+      "phrase_lines": ["SURGICAL TECH", "AND PROUD"],
+      "eyebrow": "CAREER MODE",
+      "footer": "SKILLED FOCUSED ESSENTIAL",
+      "intent": "A direct and highly searchable profession-pride design suitable for graduates, working techs, and appreciation gifts.",
+      "layout": "automatic",
+      "palette": "monochrome",
+      "product_types": ["shirt"]
+    }
+  ]
+}
