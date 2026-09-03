@@ -4,9 +4,13 @@ on:
   workflow_dispatch:
     inputs:
       theme:
-        description: Theme key from config/themes (without .json)
-        required: false
+        description: Product theme
+        required: true
+        type: choice
         default: fantasy-football-loser
+        options:
+          - fantasy-football-loser
+          - surgical-tech
       product_type:
         description: Product format
         required: true
