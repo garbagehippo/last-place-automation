@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="4500" height="5400" viewBox="0 0 4500 5400">
+  
+  <rect x="950" y="1020" width="2600" height="230" rx="115" fill="#101010"/>
+  <text x="2250" y="1180" text-anchor="middle" fill="#FFFFFF" font-family="Arial,DejaVu Sans,sans-serif" font-size="110" font-weight="900" letter-spacing="14">CAREER MODE</text>
+  <rect x="300" y="2595" width="3900" height="745" rx="60" fill="#555555"/>
+  <text x="2250" y="2150" text-anchor="middle" fill="#101010" font-family="Arial Black,DejaVu Sans,sans-serif" font-size="384" font-weight="900" letter-spacing="4">SURGICAL TECH</text>
+<text x="2250" y="3070" text-anchor="middle" fill="#FFFFFF" font-family="Arial Black,DejaVu Sans,sans-serif" font-size="555" font-weight="900" letter-spacing="4">AND PROUD</text>
+  <line x1="700" y1="4200" x2="3800" y2="4200" stroke="#555555" stroke-width="24"/>
+  <text x="2250" y="4420" text-anchor="middle" fill="#101010" font-family="Arial,DejaVu Sans,sans-serif" font-size="130" font-weight="900" letter-spacing="9">SKILLED FOCUSED ESSENTIAL</text>
+  </svg>
