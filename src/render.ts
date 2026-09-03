@@ -122,8 +122,58 @@ function buildShirtSvg(concept: Concept, layout: "automatic" | "caution"): strin
   </svg>`;
 }
 
-export function buildSvg(concept: Concept, productType: ProductType = "standard-flag", layout: "automatic" | "caution" = "automatic"): string {
+const healthcarePalettes = {
+  blue: { ink: "#183A50", accent: "#4F7C78", detail: "#C4663D", light: "#D9E1DF" },
+  green: { ink: "#24453D", accent: "#687F73", detail: "#B7673F", light: "#DCE3DE" },
+  orange: { ink: "#493B37", accent: "#A65738", detail: "#C47A4B", light: "#E6DDD4" },
+  monochrome: { ink: "#25292B", accent: "#62767A", detail: "#A45C3A", light: "#D8DEDF" }
+};
+
+function fittedText(line: string, y: number, color: string, serif = false): string {
+  const value = line.toUpperCase();
+  const safeWidth = 2350;
+  const widthFactor = serif ? 0.82 : 0.78;
+  const size = Math.min(500, Math.floor(safeWidth / Math.max(1, value.length * widthFactor)));
+  const fit = value.length > 7 ? ` textLength="${safeWidth}" lengthAdjust="spacingAndGlyphs"` : "";
+  return `<text x="2250" y="${y}" text-anchor="middle" fill="${color}" font-family="${serif ? "Georgia,DejaVu Serif,serif" : "Arial Black,DejaVu Sans,sans-serif"}" font-size="${size}" font-weight="900" letter-spacing="3"${fit}>${esc(value)}</text>`;
+}
+
+function surgicalScissors(): string {
+  return `<g transform="translate(2250 1020) rotate(-8)" fill="none" stroke="currentColor" stroke-width="34" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="-125" cy="-40" r="92"/><circle cx="125" cy="-40" r="92"/>
+    <path d="M-55 25 L410 390 M55 25 L-410 390"/>
+    <path d="M410 390 L520 500 M-410 390 L-520 500" stroke-width="24"/>
+  </g>`;
+}
+
+function buildHealthcareShirtSvg(concept: Concept): string {
+  const p = healthcarePalettes[concept.palette];
+  const lines = concept.phrase_lines;
+  const lineYs = lines.length === 4 ? [2050, 2530, 3010, 3490]
+    : lines.length === 3 ? [2150, 2760, 3370]
+      : [2320, 3100];
+  const text = lines.map((line, index) => fittedText(line, lineYs[index]!, index === lines.length - 1 ? p.detail : p.ink, index === 0)).join("\n");
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="4500" height="5400" viewBox="0 0 4500 5400">
+  <path d="M1020 1510 C1550 1230 2950 1230 3480 1510" fill="none" stroke="${p.light}" stroke-width="26"/>
+  <path d="M1210 1390 C1710 1190 2790 1190 3290 1390" fill="none" stroke="${p.accent}" stroke-width="14"/>
+  <g color="${p.accent}">${surgicalScissors()}</g>
+  <circle cx="1390" cy="1220" r="24" fill="${p.detail}"/>
+  <circle cx="3110" cy="1220" r="24" fill="${p.detail}"/>
+  <text x="2250" y="1740" text-anchor="middle" fill="${p.accent}" font-family="Arial,DejaVu Sans,sans-serif" font-size="78" font-weight="800" letter-spacing="10">${esc(concept.eyebrow.toUpperCase())}</text>
+  ${text}
+  <g transform="translate(2250 3700)" fill="${p.detail}">
+    <circle cx="-1460" r="20"/><circle cx="-1370" r="12"/><circle cx="1370" r="12"/><circle cx="1460" r="20"/>
+  </g>
+  <text x="2250" y="3750" text-anchor="middle" fill="${p.accent}" font-family="Arial,DejaVu Sans,sans-serif" font-size="88" font-weight="800" letter-spacing="5">${esc(concept.footer.toUpperCase())}</text>
+  <path d="M1320 4100 C1750 4300 2750 4300 3180 4100" fill="none" stroke="${p.accent}" stroke-width="20"/>
+  <path d="M1540 4160 C1900 4290 2600 4290 2960 4160" fill="none" stroke="${p.detail}" stroke-width="12"/>
+  </svg>`;
+}
+
+export function buildSvg(concept: Concept, productType: ProductType = "standard-flag", layout: "automatic" | "caution" = "automatic", themeKey = ""): string {
   if (productType === "garden-flag") return buildGardenSvg(concept, layout);
+  if (productType === "shirt" && themeKey === "surgical-tech") return buildHealthcareShirtSvg(concept);
   if (productType === "shirt") return buildShirtSvg(concept, layout);
   return buildLandscapeSvg(concept);
 }

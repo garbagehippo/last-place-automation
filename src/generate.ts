@@ -88,7 +88,7 @@ Write a natural Etsy title under 15 words that clearly includes the product type
   const slug = `${theme.key}-${product.productType}-${seed.id}-${date.slice(0, 19).replace("T", "-")}`;
   const dir = path.join("candidates", slug);
   await mkdir(dir, { recursive: true });
-  const svg = buildSvg(concept, product.productType, seed.layout);
+  const svg = buildSvg(concept, product.productType, seed.layout, theme.key);
   const svgFile = path.join(dir, "design.svg");
   const pngFile = path.join(dir, "design.png");
   await writeFile(svgFile, svg);

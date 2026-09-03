@@ -55,6 +55,28 @@ test("renders shirts on a transparent portrait canvas", () => {
   assert.doesNotMatch(svg, /<rect width="4500" height="5400"/);
 });
 
+test("renders surgical-tech shirts with a healthcare-specific neutral layout", () => {
+  const concept = {
+    phrase_lines: ["SURGICAL TECH", "AND PROUD"],
+    eyebrow: "CAREER MODE",
+    footer: "SKILLED FOCUSED ESSENTIAL",
+    style: "minimal" as const,
+    palette: "monochrome" as const,
+    title: "Surgical Tech and Proud Shirt",
+    description: "A sufficiently long product description for validating healthcare-specific shirt artwork.",
+    tags: ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen"],
+    rationale: "A wearable and profession-specific surgical technologist design."
+  };
+  const svg = buildSvg(concept, "shirt", "automatic", "surgical-tech");
+  assert.match(svg, /width="4500" height="5400"/);
+  assert.match(svg, /SURGICAL TECH/);
+  assert.match(svg, /<circle cx="-125" cy="-40" r="92"/);
+  assert.match(svg, /M1020 1510 C1550 1230 2950 1230 3480 1510/);
+  assert.doesNotMatch(svg, /floralSprig/);
+  assert.doesNotMatch(svg, /id="shirtHazard"/);
+  assert.doesNotMatch(svg, /<rect width="4500" height="5400"/);
+});
+
 test("keeps the blue garden-flag eyebrow readable", () => {
   const concept = {
     phrase_lines: ["I SUCK AT", "FANTASY", "FOOTBALL"],
