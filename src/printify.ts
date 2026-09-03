@@ -10,7 +10,7 @@ async function request(endpoint: string, init: RequestInit = {}) {
   if (!token) throw new Error("PRINTIFY_API_TOKEN is required");
   const response = await fetch(`${base}${endpoint}`, {
     ...init,
-    headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json", "User-Agent": "TheSpecificGiftAutomation/1.0", ...(init.headers || {}) }
+    headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json", "User-Agent": "LastPlaceAutomation/1.0", ...(init.headers || {}) }
   });
   const body = await response.text();
   if (!response.ok) throw new Error(`Printify ${response.status}: ${body}`);
@@ -23,10 +23,16 @@ export function normalizeMarketplaceTitle(title: string): string {
   return title.trim().replace(/\s+/g, " ").split(" ").map(word => {
     const letters = word.replace(/[^A-Za-z]/g, "");
     if (letters.length < 2 || letters !== letters.toUpperCase()) return word;
-    const bare = letters.toUpperCase();
-    if (titleAcronyms.has(bare)) return word;
+    if (titleAcronyms.has(letters.toUpperCase())) return word;
     return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
   }).join(" ");
+}
+
+export function templateSecretForManifest(manifest: Manifest): string {
+  if (manifest.product_type === "shirt" && manifest.theme === "surgical-tech") {
+    return "PRINTIFY_HEALTHCARE_SHIRT_TEMPLATE_PRODUCT_ID";
+  }
+  return productProfiles[manifest.product_type].templateSecret;
 }
 
 export function buildPrintAreas(template: any, enabledVariants: Array<{ id: number }>, uploadId: string) {
@@ -54,9 +60,9 @@ export function priceForVariant(variant: any, manifest: Manifest): number {
 
 export async function publishCandidate(candidateDir: string, manifest: Manifest): Promise<string> {
   const shopId = process.env.PRINTIFY_SHOP_ID;
-  const profile = productProfiles[manifest.product_type];
-  const templateId = process.env[profile.templateSecret];
-  if (!shopId || !templateId) throw new Error(`PRINTIFY_SHOP_ID and ${profile.templateSecret} are required`);
+  const templateSecret = templateSecretForManifest(manifest);
+  const templateId = process.env[templateSecret];
+  if (!shopId || !templateId) throw new Error(`PRINTIFY_SHOP_ID and ${templateSecret} are required`);
 
   const image = await readFile(path.join(candidateDir, manifest.design_file));
   const upload = await request("/uploads/images.json", {
@@ -64,9 +70,14 @@ export async function publishCandidate(candidateDir: string, manifest: Manifest)
     body: JSON.stringify({ file_name: `${manifest.slug}.png`, contents: image.toString("base64") })
   });
   const template = await request(`/shops/${shopId}/products/${templateId}.json`);
+  console.log(`Template routing: theme=${manifest.theme}; product=${manifest.product_type}; source=${templateSecret}; template=${template.id}; title=${template.title}`);
+  if (manifest.theme === "surgical-tech" && !/healthcare/i.test(String(template.title || ""))) {
+    throw new Error(`Refusing to publish surgical-tech product from non-healthcare template: ${template.title || template.id}`);
+  }
   const enabledVariants = template.variants.filter((v: any) => v.is_enabled).map((v: any) => ({
     id: v.id, price: priceForVariant(v, manifest), is_enabled: true
   }));
+  console.log(`Enabled template variants (${enabledVariants.length}): ${template.variants.filter((v: any) => v.is_enabled).map((v: any) => v.title).join(" | ")}`);
   const printAreas = buildPrintAreas(template, enabledVariants, upload.id);
   if (!printAreas.length) throw new Error("Template has no populated print areas to clone");
 

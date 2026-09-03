@@ -131,9 +131,9 @@ const healthcarePalettes = {
 
 function fittedText(line: string, y: number, color: string, serif = false): string {
   const value = line.toUpperCase();
-  const safeWidth = 2350;
+  const safeWidth = 3800;
   const widthFactor = serif ? 0.82 : 0.78;
-  const size = Math.min(500, Math.floor(safeWidth / Math.max(1, value.length * widthFactor)));
+  const size = Math.min(600, Math.floor(safeWidth / Math.max(1, value.length * widthFactor)));
   const fit = value.length > 7 ? ` textLength="${safeWidth}" lengthAdjust="spacingAndGlyphs"` : "";
   return `<text x="2250" y="${y}" text-anchor="middle" fill="${color}" font-family="${serif ? "Georgia,DejaVu Serif,serif" : "Arial Black,DejaVu Sans,sans-serif"}" font-size="${size}" font-weight="900" letter-spacing="3"${fit}>${esc(value)}</text>`;
 }
@@ -160,12 +160,12 @@ function buildHealthcareShirtSvg(concept: Concept): string {
   <g color="${p.accent}">${surgicalScissors()}</g>
   <circle cx="1390" cy="1220" r="24" fill="${p.detail}"/>
   <circle cx="3110" cy="1220" r="24" fill="${p.detail}"/>
-  <text x="2250" y="1740" text-anchor="middle" fill="${p.accent}" font-family="Arial,DejaVu Sans,sans-serif" font-size="78" font-weight="800" letter-spacing="10">${esc(concept.eyebrow.toUpperCase())}</text>
+  <text x="2250" y="1740" text-anchor="middle" fill="${p.accent}" font-family="Arial,DejaVu Sans,sans-serif" font-size="92" font-weight="800" letter-spacing="10">${esc(concept.eyebrow.toUpperCase())}</text>
   ${text}
   <g transform="translate(2250 3700)" fill="${p.detail}">
     <circle cx="-1460" r="20"/><circle cx="-1370" r="12"/><circle cx="1370" r="12"/><circle cx="1460" r="20"/>
   </g>
-  <text x="2250" y="3750" text-anchor="middle" fill="${p.accent}" font-family="Arial,DejaVu Sans,sans-serif" font-size="88" font-weight="800" letter-spacing="5">${esc(concept.footer.toUpperCase())}</text>
+  <text x="2250" y="3750" text-anchor="middle" fill="${p.accent}" font-family="Arial,DejaVu Sans,sans-serif" font-size="104" font-weight="800" letter-spacing="5">${esc(concept.footer.toUpperCase())}</text>
   <path d="M1320 4100 C1750 4300 2750 4300 3180 4100" fill="none" stroke="${p.accent}" stroke-width="20"/>
   <path d="M1540 4160 C1900 4290 2600 4290 2960 4160" fill="none" stroke="${p.detail}" stroke-width="12"/>
   </svg>`;
