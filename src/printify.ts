@@ -10,11 +10,23 @@ async function request(endpoint: string, init: RequestInit = {}) {
   if (!token) throw new Error("PRINTIFY_API_TOKEN is required");
   const response = await fetch(`${base}${endpoint}`, {
     ...init,
-    headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json", "User-Agent": "LastPlaceAutomation/1.0", ...(init.headers || {}) }
+    headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json", "User-Agent": "TheSpecificGiftAutomation/1.0", ...(init.headers || {}) }
   });
   const body = await response.text();
   if (!response.ok) throw new Error(`Printify ${response.status}: ${body}`);
   return body ? JSON.parse(body) : {};
+}
+
+const titleAcronyms = new Set(["OR", "MRI", "CT", "RN", "LPN", "CNA", "MA", "ER", "ICU", "NICU"]);
+
+export function normalizeMarketplaceTitle(title: string): string {
+  return title.trim().replace(/\s+/g, " ").split(" ").map(word => {
+    const letters = word.replace(/[^A-Za-z]/g, "");
+    if (letters.length < 2 || letters !== letters.toUpperCase()) return word;
+    const bare = letters.toUpperCase();
+    if (titleAcronyms.has(bare)) return word;
+    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+  }).join(" ");
 }
 
 export function buildPrintAreas(template: any, enabledVariants: Array<{ id: number }>, uploadId: string) {
@@ -61,7 +73,7 @@ export async function publishCandidate(candidateDir: string, manifest: Manifest)
   const product = await request(`/shops/${shopId}/products.json`, {
     method: "POST",
     body: JSON.stringify({
-      title: manifest.title,
+      title: normalizeMarketplaceTitle(manifest.title),
       description: manifest.description,
       blueprint_id: template.blueprint_id,
       print_provider_id: template.print_provider_id,
